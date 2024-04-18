@@ -1,10 +1,24 @@
-import createItem from "./services/item.js";
+import * as cartService from './services/cart.js';
+import createItem from './services/item.js';
 
-const cart = [];
+const myCart = [];
+const myWishlist = [];
 
-console.log("Welcome to the your Shopee Cart!");
+console.log('Welcome to the your Shopee Cart!');
 
-const item1 =  await createItem("Action Figure Yasuo", 30.99, 1);
-const item2 = await createItem("Capa iPhone 14", 10.00, 3);
+const item1 = await createItem('Action Figure Yasuo', 30.99, 1);
+const item2 = await createItem('Capa iPhone 14', 10.0, 3);
 
-console.log(item2.subtotal());
+await cartService.addItem(myCart, item1);
+await cartService.addItem(myCart, item2);
+
+await cartService.removeItem(myCart, item2);
+await cartService.removeItem(myCart, item2);
+await cartService.removeItem(myCart, item2);
+
+await cartService.displayCart(myCart);
+
+await cartService.calculateTotal(myCart);
+
+//await cartService.deleteItem(myCart, item2.name)
+//await cartService.deleteItem(myCart, item1.name)
